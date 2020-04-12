@@ -1,0 +1,30 @@
+<div class='play-card'>
+  <div class='top-value value-font'>
+    {{ Value }}<br />
+    <img class='face-icon' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+  </div>
+
+  <div class='card-center'>
+  
+    <div *ngIf="Value==='A'">
+      <img class='as-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+    </div>
+
+    <div *ngIf="Value==='2'">
+      <div class='face-column'>
+        <div class='face-column-item'>
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div>
+        <div class='face-column-item'>
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class='bottom-value value-font'>
+    <div class='dib flip-xy'><img class='face-icon' src='{{ iconSrc }}' alt='{{ iconSrc }}' /></div><br />
+    <div class='dib flip-xy'><span class='card-value'>{{ Value }}</span></div>
+  </div>
+</div>

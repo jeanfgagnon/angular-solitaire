@@ -1,0 +1,84 @@
+$card-width: 78px;
+$card-height: 111px;
+$card-center-left: 14px;
+
+.play-card {
+  position: relative;
+  width: $card-width;
+  height: $card-height;
+  border: black solid 1px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.top-value {
+  position: absolute;
+  top: 3px;
+  left: 2px;
+  display: inline-block;
+  text-align: center;
+}
+
+.bottom-value {
+  position: absolute;
+  bottom: 3px;
+  right: 2px;
+  display: inline-block;
+  text-align: center;
+}
+
+.value-font {
+  font-family: "Helvetica Narrow", "Arial Narrow", Tahoma, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 8pt;
+  letter-spacing: -0.6px;
+}
+
+.face-icon {
+  margin-top: 1px;
+  width: 8px;
+}
+
+.card-center {
+  position: absolute;
+  top: 0px;
+  left: $card-center-left;
+  width: $card-width - (2 * $card-center-left) - 2;
+  height: $card-height - 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.face-column {
+  display: grid;
+  justify-items: center;
+  width: 100%;
+  background-color: orange;
+  height: $card-height;
+}
+
+.face-column-item {
+  align-self: middle;
+}
+
+.face-img-w {
+  width: $card-width - (2 * $card-center-left) - 32;  
+}
+
+.as-img-w {
+  width: $card-width - (2 * $card-center-left) - 12;
+}
+
+.flip-xy {
+  transform: scale(-1, -1);
+}
+
+.flip-y {
+  transform: scaleY(-1);
+}
+
+.flip-x {
+  transform: scaleX(-1);
+}
