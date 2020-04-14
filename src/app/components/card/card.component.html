@@ -5,26 +5,218 @@
   </div>
 
   <div class='card-center'>
-  
+
     <div *ngIf="Value==='A'">
       <img class='as-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
     </div>
 
     <div *ngIf="Value==='2'">
-      <div class='face-column'>
-        <div class='face-column-item'>
+      <div class='single-column'>
+        <div class='face-column-item ass'>
           <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
         </div>
-        <div class='face-column-item'>
-          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        <div class='face-column-item' style='align-self: flex-end;'>
+          <img class='face-img-w flip-y vab' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
         </div>
       </div>
     </div>
 
-  </div>
+    <div *ngIf="Value==='3'">
+      <div class='single-column'>
+        <div class='face-column-item ass'>
+          <img class='face-img-w vat' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div>
+        <div class='face-column-item'>
+          <img class='face-img-w vam' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div>
+        <div class='face-column-item ase'>
+          <img class='face-img-w flip-y vab' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="Value==='4'">
+
+      <div class='two-columns'>
+        <div class='face-column-item ass'>
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div>
+        <div class='face-column-item ass'>
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div>
+        <div class='face-column-item ase'>
+          <img class='face-img-w flip-y vab' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div>
+        <div class='face-column-item ase'>
+          <img class='face-img-w flip-y vab' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div>
+      </div>
+
+    </div>
+
+    <div *ngIf="Value==='5'">
+
+      <div class='three-rows'>
+        <div class='sub-row'>
+          <div class=''><img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' /></div>
+          <div class=''><img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' /></div>
+        </div>
+        <div class='tac face-column-item'><img class='face-img-w vam' src='{{ iconSrc }}' alt='{{ iconSrc }}' /></div>
+        <div class='sub-row ase'>
+          <div class=''><img class='face-img-w flip-y vab' src='{{ iconSrc }}' alt='{{ iconSrc }}' /></div>
+          <div class=''><img class='face-img-w flip-y vab' src='{{ iconSrc }}' alt='{{ iconSrc }}' /></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div *ngIf="Value==='6'">
+
+      <div class='two-columns'>
+        <div class='face-column-item ass'>
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div>
+        <div class='face-column-item ass'>
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div>
+        <div class='face-column-item ass'>
+          <img class='face-img-w vam' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div>
+        <div class='face-column-item ass'>
+          <img class='face-img-w vam' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div>
+        <div class='face-column-item ase'>
+          <img class='face-img-w flip-y vab' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div>
+        <div class='face-column-item ase'>
+          <img class='face-img-w flip-y vab' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div>
+      </div>
+
+    </div>
+
+    <div *ngIf="Value==='7'" class='cpc' >
+      <div class='three-columns'>
+        <div class='dib flex-col spc-betw'>
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+          <img class='face-img-w flip-y' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+         </div>
+        <!-- <div class='dib'>
+          <img style='margin-top: 110%' class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div> -->
+        <div class='dib flex-col spc-even'>
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+          <img class='face-img-w flip-y hid' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div>
+
+        <div class='dib flex-col spc-betw'>
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+          <img class='face-img-w flip-y' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+         </div>
+      </div>
+    </div>
+
+    <div *ngIf="Value==='8'" class='cpc' >
+
+      <div class='three-columns'>
+        <div class='dib flex-col spc-betw'>
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+          <img class='face-img-w flip-y' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+         </div>
+        <div class='dib flex-col spc-even'>
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+          <img class='face-img-w flip-y' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div>
+        <div class='dib flex-col spc-betw'>
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+          <img class='face-img-w flip-y' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+         </div>
+      </div>
+      
+    </div>
+
+    <div *ngIf="Value==='9'" class='cpc' >
+
+      <div class='three-columns'>
+        <div class='dib flex-col spc-betw'>
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+          <img class='face-img-w flip-y' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+          <img class='face-img-w flip-y' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+         </div>
+        <div class='dib flex-col spc-even'>
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div>
+        <div class='dib flex-col spc-betw'>
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+          <img class='face-img-w flip-y' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+          <img class='face-img-w flip-y' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+         </div>
+      </div>
+      
+    </div>
+
+    <div *ngIf="Value==='10'" class='cpc' >
+
+      <div class='three-columns'>
+        <div class='dib flex-col spc-betw'>
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+          <img class='face-img-w flip-y' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+          <img class='face-img-w flip-y' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+         </div>
+        <div class='dib flex-col spc-even'>
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+          <img class='face-img-w flip-y' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div>
+        <div class='dib flex-col spc-betw'>
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+          <img class='face-img-w flip-y' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+          <img class='face-img-w flip-y' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+         </div>
+      </div>
+      
+    </div>
+
+    <div *ngIf="Value==='11'">
+      
+    </div>
+
+  </div> <!-- card center -->
 
   <div class='bottom-value value-font'>
     <div class='dib flip-xy'><img class='face-icon' src='{{ iconSrc }}' alt='{{ iconSrc }}' /></div><br />
     <div class='dib flip-xy'><span class='card-value'>{{ Value }}</span></div>
   </div>
 </div>
+
+
+<!--
+
+
+          <div class='face-column-item'>
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div>
+        <div class='face-column-item'>
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div>
+        <div class='face-column-item'>
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div>
+        <div class='face-column-item'>
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div>
+        <div class='face-column-item'>
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div>
+        <div class='face-column-item'>
+          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
+        </div>
+
+-->

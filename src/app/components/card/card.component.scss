@@ -42,29 +42,76 @@ $card-center-left: 14px;
 
 .card-center {
   position: absolute;
-  top: 0px;
+  top: 10px;
   left: $card-center-left;
   width: $card-width - (2 * $card-center-left) - 2;
-  height: $card-height - 2px;
+  height: $card-height - 22px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.face-column {
+.single-column {
   display: grid;
   justify-items: center;
   width: 100%;
-  background-color: orange;
-  height: $card-height;
+  height: $card-height - 22px;
+//  background-color: orange;
+}
+
+.two-columns {
+  display: grid;
+  grid-template-columns: 45% 45%;
+  grid-template-rows: auto;
+  column-gap: 5px;
+  width: 100%;
+  height: $card-height - 22px;
+}
+
+.three-rows {
+  display: grid;
+  grid-template-rows: 33% 33% 33%;
+  width: 100%;
+  height: $card-height - 22;
+}
+
+.three-columns {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  width: 100%;
+  height: $card-height - 22;
+  column-gap: 1px;;
+  justify-items: stretch;  
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.spc-betw {
+  justify-content: space-between;
+}
+
+.spc-even {
+  justify-content: space-evenly;
+}
+
+.sub-row {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto;
+  column-gap: 5px;
+  width: 100%;
 }
 
 .face-column-item {
-  align-self: middle;
+  //align-self: middle;
+  place-self: center;
 }
 
 .face-img-w {
-  width: $card-width - (2 * $card-center-left) - 32;  
+  width: $card-width - (2 * $card-center-left) - 34;  
 }
 
 .as-img-w {
@@ -82,3 +129,36 @@ $card-center-left: 14px;
 .flip-x {
   transform: scaleX(-1);
 }
+
+.vab {
+  vertical-align: bottom;
+}
+
+.vat {
+  vertical-align: top;
+}
+
+.vam {
+  vertical-align: middle;
+}
+
+.ass {
+  align-self: start;
+}
+
+.ase {
+  align-self: end;
+}
+
+.tac {
+  text-align: center;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.cpc { 
+  width: 100%;
+}
+.hid { visibility: hidden;}
