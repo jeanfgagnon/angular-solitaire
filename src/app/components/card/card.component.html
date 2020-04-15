@@ -96,6 +96,7 @@
     </div>
 
     <div *ngIf="Value==='7'" class='cpc' >
+
       <div class='three-columns'>
         <div class='dib flex-col spc-betw'>
           <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
@@ -116,6 +117,7 @@
           <img class='face-img-w flip-y' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
          </div>
       </div>
+
     </div>
 
     <div *ngIf="Value==='8'" class='cpc' >
@@ -184,8 +186,8 @@
       
     </div>
 
-    <div *ngIf="Value==='11'">
-      
+    <div *ngIf="Value==='J' || Value==='Q' ||  Value==='K'">
+      <img class="cpc vam" src='{{figurePath(Value)}}' alt='Figure Image' />
     </div>
 
   </div> <!-- card center -->

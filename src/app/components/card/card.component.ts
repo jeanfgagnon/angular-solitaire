@@ -19,6 +19,12 @@ export class CardComponent implements OnInit {
     this.iconSrc = "assets/" + this.Model.FaceName + ".png";
   }
 
+  // helpers
+
+  public figurePath(figureVal: string): string {
+    return `assets/${figureVal.toLowerCase()}-${this.Model.FaceName}.png`;
+  }
+
   // properties
 
   get Value(): string {
@@ -32,6 +38,7 @@ export class CardComponent implements OnInit {
         rv = this.Model.Value.toString();
         break;        
     }
+
     return rv;
   }
   
