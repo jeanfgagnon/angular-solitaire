@@ -18,15 +18,29 @@ export class CardDeckService {
     this.initDeck();
   }
 
+  // public methods
+
+  public shuffled(init: boolean): CardModel[] {
+
+    init && this.initDeck();
+
+    for (let i = this._deck.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [this._deck[i], this._deck[j]] = [this._deck[j], this._deck[i]];
+    }
+    
+    return this._deck;
+  }
+
   // private code
 
-  initDeck(): void {
+  private initDeck(): void {
     this._deck = [];
 
     this.faceNames.map(faceName => {
       for (let i = 0; i < this.valueCount; i++) {
         const card = new CardModel();
-        
+
         card.Face = CardFaces[faceName];
         card.Value = i + 1;
         card.Open = false;

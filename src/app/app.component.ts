@@ -19,6 +19,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.deck = this.cardDeckService.Deck;    
+    this.deck = this.cardDeckService.shuffled(true);    
   }
 }
