@@ -1,0 +1,48 @@
+@import 'cardsize';
+//$card-width: 78px;
+//$card-height: 111px;
+
+$decalage: 22px;
+$inter-col: 20px;
+$sky-gutter: 25px;
+$my-padding: 10px;
+
+.game-board {
+  position: relative;
+  width: ($inter-col * 8) + ($card-width * 7) + ($my-padding * 2);
+  height: ($card-height * 2) + $sky-gutter + (12 * $inter-col) + ($my-padding * 2);
+  border: #c0c0c0 solid 1px;
+  border-radius: 6px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.place-holder {
+  width: $card-width;
+  height: $card-height;
+  border-radius: 5px;
+  border: #d0d0d0 solid 1px;
+}
+
+.sky-1 {
+  position: absolute;
+  top: $my-padding;
+  right: $my-padding + ($card-width * 3) + ($inter-col * 4);
+}
+
+.sky-2 {
+  position: absolute;
+  top: $my-padding;
+  right: $my-padding + ($card-width * 2) + ($inter-col * 3);
+}
+.sky-3 {
+  position: absolute;
+  top: $my-padding;
+//  right: $my-padding + ($card-width * 2) + ($inter-col * 2);
+  right: $my-padding + $card-width + ($inter-col * 2);
+}
+.sky-4 {
+  position: absolute;
+  top: $my-padding;
+  right: $my-padding + $inter-col;
+}
