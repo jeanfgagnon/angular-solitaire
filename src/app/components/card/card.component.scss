@@ -1,5 +1,5 @@
-$card-width: 78px;
-$card-height: 111px;
+@import 'cardsize';
+
 $card-center-left: 14px;
 
 .play-card {
@@ -10,6 +10,17 @@ $card-center-left: 14px;
   border-radius: 5px;
   box-sizing: border-box;
   padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-back {
+  margin-top: 3px;
+  width: $card-width - 10px;
+  height: $card-height - 10px; 
+  border-radius: 4px;
+  border: black solid 1px;
 }
 
 .top-value {
@@ -166,3 +177,11 @@ $card-center-left: 14px;
   height: 100%;
 }
 .hid { visibility: hidden;}
+
+.red {
+  color: red;
+}
+
+.black {
+  color: black;
+}

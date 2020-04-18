@@ -12,11 +12,13 @@ export class CardComponent implements OnInit {
   private _cardModel: CardModel;
 
   public iconSrc: string;
+  public valueColorClass: string;
 
   constructor() { }
 
   public ngOnInit(): void {
     this.iconSrc = "assets/" + this.Model.FaceName + ".png";
+    this.valueColorClass = (this.Model.FaceName === 'diamond' || this.Model.FaceName === 'heart') ? 'red' : 'black';
   }
 
   // helpers

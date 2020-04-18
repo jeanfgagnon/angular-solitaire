@@ -11,14 +11,12 @@ import { CardModel } from './common/card-model';
 export class AppComponent implements OnInit {
   title = 'ng-solitaire';
 
-  deck: CardModel[];
   now = new Date().toString();
   
-  constructor(private cardDeckService: CardDeckService) {
+  constructor() {
 
   }
 
   ngOnInit(): void {
-    this.deck = this.cardDeckService.shuffled(true);    
   }
 }
