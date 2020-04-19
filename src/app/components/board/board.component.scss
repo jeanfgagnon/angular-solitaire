@@ -3,9 +3,9 @@
 //$card-height: 111px;
 
 $decalage: 22px;
-$inter-col: 20px;
+$inter-col: 25px;
 $sky-gutter: 25px;
-$my-padding: 10px;
+$my-padding: 30px;
 
 .game-board {
   position: relative;
@@ -15,34 +15,48 @@ $my-padding: 10px;
   border-radius: 6px;
   margin-left: auto;
   margin-right: auto;
+  box-sizing: border-box;
 }
 
 .place-holder {
   width: $card-width;
   height: $card-height;
   border-radius: 5px;
-  border: #d0d0d0 solid 1px;
+  border: #727272 solid 1px;
+}
+
+.closed-deck {
+  position: absolute;
+  top: $my-padding;
+  left: $my-padding;
+}
+
+.opened-deck {
+  position: absolute;
+  top: $my-padding;
+  left: $my-padding + $card-width + $inter-col;
 }
 
 .sky-1 {
   position: absolute;
   top: $my-padding;
-  right: $my-padding + ($card-width * 3) + ($inter-col * 4);
+  right: $my-padding + ($card-width * 3) + ($inter-col * 3);
 }
 
 .sky-2 {
   position: absolute;
   top: $my-padding;
-  right: $my-padding + ($card-width * 2) + ($inter-col * 3);
+  right: $my-padding + ($card-width * 2) + ($inter-col * 2);
 }
+
 .sky-3 {
   position: absolute;
   top: $my-padding;
-//  right: $my-padding + ($card-width * 2) + ($inter-col * 2);
-  right: $my-padding + $card-width + ($inter-col * 2);
+  right: $my-padding + $card-width + $inter-col;
 }
+
 .sky-4 {
   position: absolute;
   top: $my-padding;
-  right: $my-padding + $inter-col;
+  right: $my-padding;
 }

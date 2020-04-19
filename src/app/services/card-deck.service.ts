@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { CardModel } from '../common/card-model';
 import { CardFaces } from '../common/card-faces.enum';
+import { CardCoords } from '../common/card-coords';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,9 @@ export class CardDeckService {
         card.Face = CardFaces[faceName];
         card.Value = i + 1;
         card.Open = false;
+
+        card.Coords = new CardCoords();
+        card.Coords.xPos = card.Coords.yPos = -1;
 
         this._deck.push(card);
       };
