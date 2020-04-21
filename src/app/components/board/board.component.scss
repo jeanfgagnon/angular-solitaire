@@ -4,12 +4,12 @@
 
 $decalage: 22px;
 $inter-col: 25px;
-$sky-gutter: 25px;
+$sky-gutter: 35px;
 $my-padding: 30px;
 
 .game-board {
   position: relative;
-  width: ($inter-col * 8) + ($card-width * 7) + ($my-padding * 2);
+  width: ($inter-col * 6) + ($card-width * 7) + ($my-padding * 2);
   height: ($card-height * 2) + $sky-gutter + (12 * $inter-col) + ($my-padding * 2);
   border: #c0c0c0 solid 1px;
   border-radius: 6px;
@@ -40,23 +40,65 @@ $my-padding: 30px;
 .sky-1 {
   position: absolute;
   top: $my-padding;
-  right: $my-padding + ($card-width * 3) + ($inter-col * 3);
+  left: $my-padding + ($card-width * 3) + ($inter-col * 3);
 }
 
 .sky-2 {
   position: absolute;
   top: $my-padding;
-  right: $my-padding + ($card-width * 2) + ($inter-col * 2);
+  left: $my-padding + ($card-width * 4) + ($inter-col * 4);
 }
 
 .sky-3 {
   position: absolute;
   top: $my-padding;
-  right: $my-padding + $card-width + $inter-col;
+  left: $my-padding + ($card-width * 5) + ($inter-col * 5);
 }
 
 .sky-4 {
   position: absolute;
   top: $my-padding;
-  right: $my-padding;
+  left: $my-padding + ($card-width * 6) + ($inter-col * 6);
+}
+
+.col-1 {
+  position: absolute;
+  top: $my-padding + $card-height + $sky-gutter;
+  left: $my-padding;
+}
+
+.col-2 {
+  position: absolute;
+  top: $my-padding + $card-height + $sky-gutter;
+  left: $my-padding + $card-width + $inter-col;
+}
+
+.col-3 {
+  position: absolute;
+  top: $my-padding + $card-height + $sky-gutter;
+  left: $my-padding + ($card-width * 2) + ($inter-col * 2);
+}
+
+.col-4 {
+  position: absolute;
+  top: $my-padding + $card-height + $sky-gutter;
+  left: $my-padding + ($card-width * 3) + ($inter-col * 3);
+}
+
+.col-5 {
+  position: absolute;
+  top: $my-padding + $card-height + $sky-gutter;
+  left: $my-padding + ($card-width * 4) + ($inter-col * 4);
+}
+
+.col-6 {
+  position: absolute;
+  top: $my-padding + $card-height + $sky-gutter;
+  left: $my-padding + ($card-width * 5) + ($inter-col * 5);
+}
+
+.col-7 {
+  position: absolute;
+  top: $my-padding + $card-height + $sky-gutter;
+  left: $my-padding + ($card-width * 6) + ($inter-col * 6);
 }

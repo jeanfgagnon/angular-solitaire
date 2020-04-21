@@ -1,4 +1,4 @@
-<div class='play-card' #card>
+<div [ngClass]="cardClass" #card>
   
   <div *ngIf="!Model.Open">
     <img class='card-back' src='assets/card-back.png' alt='Card Back' />
@@ -12,7 +12,6 @@
     </div>
 
     <div class='card-center'>
-
 
       <div *ngIf="Value==='A'">
         <img class='as-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
@@ -204,28 +203,3 @@
     
   </div>
 </div>
-
-
-<!--
-
-
-          <div class='face-column-item'>
-          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
-        </div>
-        <div class='face-column-item'>
-          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
-        </div>
-        <div class='face-column-item'>
-          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
-        </div>
-        <div class='face-column-item'>
-          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
-        </div>
-        <div class='face-column-item'>
-          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
-        </div>
-        <div class='face-column-item'>
-          <img class='face-img-w' src='{{ iconSrc }}' alt='{{ iconSrc }}' />
-        </div>
-
--->

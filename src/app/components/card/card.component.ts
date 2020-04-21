@@ -11,6 +11,7 @@ export class CardComponent implements OnInit, AfterViewChecked {
 
   private _cardModel: CardModel;
 
+  public cardClass: string;
   public iconSrc: string;
   public valueColorClass: string;
 
@@ -19,6 +20,7 @@ export class CardComponent implements OnInit, AfterViewChecked {
   constructor(private renderer: Renderer2) { }
 
   public ngOnInit(): void {
+    this.cardClass = this.Model.Open ? 'play-card selectable-card' : 'play-card';
     this.iconSrc = "assets/" + this.Model.FaceName + ".png";
     this.valueColorClass = (this.Model.FaceName === 'diamond' || this.Model.FaceName === 'heart') ? 'red' : 'black';
   }

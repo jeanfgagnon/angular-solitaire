@@ -33,6 +33,21 @@ export class CardDeckService {
     return this._deck;
   }
 
+  // create a card from scratch
+  public dumb(value: number, face: CardFaces, open: boolean, x: number, y: number, z: number): CardModel {
+    const card = new CardModel();
+
+    card.Coords = new CardCoords();
+    card.Value = value;
+    card.Face = face;
+    card.Open = open;
+    card.Coords.xPos = x;
+    card.Coords.yPos = y;
+    card.Coords.zPos = z;
+
+    return card;
+  }
+
   // private code
 
   private initDeck(): void {

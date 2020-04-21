@@ -13,6 +13,16 @@ $card-center-left: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: white;
+}
+
+.selectable-card {
+  cursor: move;
+}
+
+.selectable-card:hover {
+  border-color: #92abff;
+  background-color: #cfdaff;
 }
 
 .card-back {
