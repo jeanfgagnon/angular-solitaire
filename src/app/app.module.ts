@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { AppComponent } from './app.component';
 import { CardComponent } from './components/card/card.component';
@@ -12,7 +13,8 @@ import { BoardComponent } from './components/board/board.component';
     BoardComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
