@@ -40,8 +40,10 @@ export class CardComponent implements OnInit, AfterViewChecked {
     if (this.Model.Coords.yPos >= 0 && this.Model.Coords.xPos >= 0) {
       this.renderer.setStyle(this.card.nativeElement, 'top', (this.Model.Coords.yPos) + 'px');
       this.renderer.setStyle(this.card.nativeElement, 'left', (this.Model.Coords.xPos) + 'px');
+      this.renderer.setStyle(this.card.nativeElement, 'z-index', (this.Model.Coords.zPos));
     }
   }
+
   // properties
 
   get Value(): string {

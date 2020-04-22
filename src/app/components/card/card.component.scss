@@ -28,7 +28,7 @@ $card-center-left: 14px;
 .card-back {
   margin-top: 3px;
   width: $card-width - 10px;
-  height: $card-height - 10px; 
+  height: $card-height - 10px;
   border-radius: 4px;
   border: black solid 1px;
 }
@@ -102,7 +102,7 @@ $card-center-left: 14px;
   width: 100%;
   height: $card-height - 22;
   column-gap: 1px;;
-  justify-items: stretch;  
+  justify-items: stretch;
 }
 
 .flex-col {
@@ -132,7 +132,7 @@ $card-center-left: 14px;
 }
 
 .face-img-w {
-  width: $card-width - (2 * $card-center-left) - 34;  
+  width: $card-width - (2 * $card-center-left) - 34;
 }
 
 .as-img-w {
@@ -179,7 +179,7 @@ $card-center-left: 14px;
   background-color: orange;
 }
 
-.cpc { 
+.cpc {
   width: 100%;
 }
 
