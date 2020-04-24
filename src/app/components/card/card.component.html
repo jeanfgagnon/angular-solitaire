@@ -1,6 +1,4 @@
-<div *ngIf="Model.Open" [ngClass]="cardClass" #cardOpen cdkDrag>
+<div [cdkDragDisabled]="!Model.Open" [ngClass]="cardClass" #card cdkDrag>
   <app-card-color [Model]="Model"></app-card-color>
-</div>
-<div *ngIf="!Model.Open" [ngClass]="cardClass" #cardClose>
-  <app-card-color [Model]="Model"></app-card-color>
+  <div class="my-preview" *cdkDragPlaceholder>LOL</div>
 </div>

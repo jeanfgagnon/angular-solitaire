@@ -13,8 +13,7 @@ export class CardComponent implements OnInit, AfterViewChecked {
 
   public cardClass: string;
 
-  @ViewChild('cardClose') cardClose: ElementRef;
-  @ViewChild('cardOpen') cardOpen: ElementRef;
+  @ViewChild('card') card: ElementRef;
 
   constructor(private renderer: Renderer2) { }
 
@@ -29,17 +28,10 @@ export class CardComponent implements OnInit, AfterViewChecked {
   // private code
 
   private positionMySelf(): void {
-    let card: ElementRef;
-    if (this.Model.Open) {
-      card = this.cardOpen;
-    }
-    else {
-      card = this.cardClose;
-    }
     if (this.Model.Coords.yPos >= 0 && this.Model.Coords.xPos >= 0) {
-      this.renderer.setStyle(card.nativeElement, 'top', (this.Model.Coords.yPos) + 'px');
-      this.renderer.setStyle(card.nativeElement, 'left', (this.Model.Coords.xPos) + 'px');
-      this.renderer.setStyle(card.nativeElement, 'z-index', (this.Model.Coords.zPos));
+      this.renderer.setStyle(this.card.nativeElement, 'top', (this.Model.Coords.yPos) + 'px');
+      this.renderer.setStyle(this.card.nativeElement, 'left', (this.Model.Coords.xPos) + 'px');
+      this.renderer.setStyle(this.card.nativeElement, 'z-index', (this.Model.Coords.zPos));
     }
   }
 
