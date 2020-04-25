@@ -8,40 +8,69 @@
 
   </div>
 
-  <div class='sky-1 place-holder' cdkDropList></div>
-  <div class='sky-2 place-holder' cdkDropList></div>
-  <div class='sky-3 place-holder' cdkDropList></div>
-  <div class='sky-4 place-holder' cdkDropList></div>
+  <div class='sky-1 place-holder' id='sky1' cdkDropList cdkDropListSortingDisabled
+    [cdkDropListData]="skyPiles[0]"
+    (cdkDropListDropped)="drop($event)">
+    <app-card *ngFor="let card of skyPiles[0]" [Model]="card"></app-card>
+  </div>
 
-  <div #col1 class='col-1 place-holder' cdkDropList cdkDropListSortingDisabled 
+  <div class='sky-2 place-holder' cdkDropList cdkDropListSortingDisabled
+    [cdkDropListData]="skyPiles[1]"
+    (cdkDropListDropped)="drop($event)">
+    <app-card *ngFor="let card of skyPiles[1]" [Model]="card"></app-card>
+  </div>
+
+  <div class='sky-3 place-holder' cdkDropList cdkDropListSortingDisabled
+    [cdkDropListData]="skyPiles[2]"
+    (cdkDropListDropped)="drop($event)">
+    <app-card *ngFor="let card of skyPiles[2]" [Model]="card"></app-card>
+  </div>
+
+  <div class='sky-4 place-holder' cdkDropList cdkDropListSortingDisabled
+    [cdkDropListData]="skyPiles[3]"
+    (cdkDropListDropped)="drop($event)">
+    <app-card *ngFor="let card of skyPiles[3]" [Model]="card"></app-card>
+  </div>
+
+  <div #col1 class='col-1 place-holder' cdkDropList cdkDropListSortingDisabled
     [cdkDropListData]="colPiles[0]"
     (cdkDropListDropped)="drop($event)">
     <app-card *ngFor="let card of colPiles[0]" [Model]="card"></app-card>
   </div>
 
-  <div class='col-2 place-holder' cdkDropList cdkDropListSortingDisabled 
-  [cdkDropListData]="colPiles[1]"
-  (cdkDropListDropped)="drop($event)">
+  <div class='col-2 place-holder' cdkDropList cdkDropListSortingDisabled
+    [cdkDropListData]="colPiles[1]"
+    (cdkDropListDropped)="drop($event)">
     <app-card *ngFor="let card of colPiles[1]" [Model]="card"></app-card>
   </div>
 
-  <div class='col-3 place-holder' cdkDropList cdkDropListSortingDisabled>
+  <div class='col-3 place-holder' cdkDropList cdkDropListSortingDisabled
+    [cdkDropListData]="colPiles[2]"
+    (cdkDropListDropped)="drop($event)">
     <app-card *ngFor="let card of colPiles[2]" [Model]="card"></app-card>
   </div>
 
-  <div class='col-4 place-holder' cdkDropList cdkDropListSortingDisabled>
+  <div class='col-4 place-holder' cdkDropList cdkDropListSortingDisabled
+    [cdkDropListData]="colPiles[3]"
+    (cdkDropListDropped)="drop($event)">
     <app-card *ngFor="let card of colPiles[3]" [Model]="card"></app-card>
   </div>
 
-  <div class='col-5 place-holder' cdkDropList cdkDropListSortingDisabled>
+  <div class='col-5 place-holder' cdkDropList cdkDropListSortingDisabled
+    [cdkDropListData]="colPiles[4]"
+    (cdkDropListDropped)="drop($event)">
     <app-card *ngFor="let card of colPiles[4]" [Model]="card"></app-card>
   </div>
 
-  <div class='col-6 place-holder' cdkDropList cdkDropListSortingDisabled>
+  <div class='col-6 place-holder' cdkDropList cdkDropListSortingDisabled
+    [cdkDropListData]="colPiles[5]"
+    (cdkDropListDropped)="drop($event)">
     <app-card *ngFor="let card of colPiles[5]" [Model]="card"></app-card>
   </div>
 
-  <div class='col-7 place-holder' cdkDropList cdkDropListSortingDisabled>
+  <div class='col-7 place-holder' cdkDropList cdkDropListSortingDisabled
+    [cdkDropListData]="colPiles[6]"
+    (cdkDropListDropped)="drop($event)">
     <app-card *ngFor="let card of colPiles[6]" [Model]="card"></app-card>
   </div>
 </div>

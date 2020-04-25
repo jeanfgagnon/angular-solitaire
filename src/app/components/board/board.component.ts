@@ -13,6 +13,7 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 export class BoardComponent implements OnInit {
 
   public colPiles: Array<Array<CardModel>> = [[]];
+  public skyPiles: Array<Array<CardModel>> = [[]];
   // distance between card when spreaded on table
   public xSpread = 20;
   public ySpread = 20;
@@ -29,7 +30,7 @@ export class BoardComponent implements OnInit {
   ngOnInit(): void {
     this.deck = this.cardDeckService.shuffled(true);
     this.dumbCard = this.cardDeckService.dumb(0, CardFaces.Club, false, 0, 0, 0);
-    this.loadColPiles();
+    this.prepPiles();
   }
 
   // event handlers
@@ -40,8 +41,21 @@ export class BoardComponent implements OnInit {
   
   // private code
 
-  // put some cards into the 7 piles
-  private loadColPiles(): void {
+  private prepPiles(): void {
+    this.prepColPiles();
+    this.prepSkyPiles();
+  }
+
+  // prepare the 4 sky piles
+  private prepSkyPiles(): void {
+    for (let i = 0; i < 4; i++) {
+      this.skyPiles.push(new Array<CardModel>());
+      this.skyPiles[i] = [];
+    }
+  }
+
+  // put some cards into the 7 column piles
+  private prepColPiles(): void {
     let deckIndex = this.deck.length - 1;
     let pileIndex: number, cardIndex: number;
     for (pileIndex = 1; pileIndex <= 7; pileIndex++) {

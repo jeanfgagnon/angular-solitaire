@@ -19,8 +19,10 @@
 }
 
 .selectable-card:hover {
-  border-color: #92abff;
-  background-color: #cfdaff;
+  border-color: red;
+  background-color: #efefef
+  // border-color: #92abff;
+  // background-color: #cfdaff;
 }
 
 // .cdk-drop-dragging .cdk-drag {
