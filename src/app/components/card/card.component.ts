@@ -22,7 +22,9 @@ export class CardComponent implements OnInit, AfterViewChecked {
   }
 
   ngAfterViewChecked(): void {
-    this.positionMySelf();
+    if (this.Model && this.Model.Value > 0) {
+      this.positionMySelf();
+    }
   }
 
   // private code

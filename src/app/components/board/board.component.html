@@ -1,9 +1,9 @@
 <div class='game-board' cdkDropListGroup>
-  
+
   <div class='closed-deck place-holder'>
-    <app-card Model="dumbCard"></app-card>
+    <app-card *ngIf="dumbCard.Coords !== undefined" Model="dumbCard"></app-card>
   </div>
-  
+
   <div class='opened-deck place-holder'>
 
   </div>
@@ -13,31 +13,35 @@
   <div class='sky-3 place-holder' cdkDropList></div>
   <div class='sky-4 place-holder' cdkDropList></div>
 
-  <div #col1 class='col-1 place-holder' cdkDropList>
+  <div #col1 class='col-1 place-holder' cdkDropList cdkDropListSortingDisabled 
+    [cdkDropListData]="colPiles[0]"
+    (cdkDropListDropped)="drop($event)">
     <app-card *ngFor="let card of colPiles[0]" [Model]="card"></app-card>
   </div>
-  
-  <div class='col-2 place-holder' cdkDropList>
+
+  <div class='col-2 place-holder' cdkDropList cdkDropListSortingDisabled 
+  [cdkDropListData]="colPiles[1]"
+  (cdkDropListDropped)="drop($event)">
     <app-card *ngFor="let card of colPiles[1]" [Model]="card"></app-card>
   </div>
-  
-  <div class='col-3 place-holder' cdkDropList>
+
+  <div class='col-3 place-holder' cdkDropList cdkDropListSortingDisabled>
     <app-card *ngFor="let card of colPiles[2]" [Model]="card"></app-card>
   </div>
-  
-  <div class='col-4 place-holder' cdkDropList>
-    <app-card *ngFor="let card of colPiles[3]" [Model]="card"></app-card>  
+
+  <div class='col-4 place-holder' cdkDropList cdkDropListSortingDisabled>
+    <app-card *ngFor="let card of colPiles[3]" [Model]="card"></app-card>
   </div>
-  
-  <div class='col-5 place-holder' cdkDropList>
-    <app-card *ngFor="let card of colPiles[4]" [Model]="card"></app-card>  
+
+  <div class='col-5 place-holder' cdkDropList cdkDropListSortingDisabled>
+    <app-card *ngFor="let card of colPiles[4]" [Model]="card"></app-card>
   </div>
-  
-  <div class='col-6 place-holder' cdkDropList>
-    <app-card *ngFor="let card of colPiles[5]" [Model]="card"></app-card>  
+
+  <div class='col-6 place-holder' cdkDropList cdkDropListSortingDisabled>
+    <app-card *ngFor="let card of colPiles[5]" [Model]="card"></app-card>
   </div>
-  
-  <div class='col-7 place-holder' cdkDropList>
-    <app-card *ngFor="let card of colPiles[6]" [Model]="card"></app-card>  
+
+  <div class='col-7 place-holder' cdkDropList cdkDropListSortingDisabled>
+    <app-card *ngFor="let card of colPiles[6]" [Model]="card"></app-card>
   </div>
 </div>

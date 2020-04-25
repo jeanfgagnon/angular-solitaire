@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CardDeckService } from 'src/app/services/card-deck.service';
 import { CardModel } from 'src/app/common/card-model';
 import { CardFaces } from 'src/app/common/card-faces.enum';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-board',
@@ -31,6 +32,12 @@ export class BoardComponent implements OnInit {
     this.loadColPiles();
   }
 
+  // event handlers
+
+  drop(event: CdkDragDrop<string[]>) {
+    console.dir(event);
+  }
+  
   // private code
 
   // put some cards into the 7 piles

@@ -1,4 +1,5 @@
-<div [cdkDragDisabled]="!Model.Open" [ngClass]="cardClass" #card cdkDrag>
+<div [cdkDragDisabled]="!Model.Open" [ngClass]="cardClass" #card 
+  cdkDrag [cdkDragData]="Model">
   <app-card-color [Model]="Model"></app-card-color>
-  <div class="my-preview" *cdkDragPlaceholder>LOL</div>
+  <div *cdkDragPlaceholder></div>
 </div>
