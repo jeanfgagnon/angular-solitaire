@@ -1,6 +1,6 @@
-<div [ngClass]="this.Model.Open ? 'play-card selectable-card' : 'play-card'" #card 
-  cdkDrag 
-  [cdkDragDisabled]="!Model.Open" 
+<div [ngClass]="this.Model.Open ? 'play-card selectable-card' : 'play-card'" #card
+  cdkDrag
+  [cdkDragDisabled]="!Model.Open"
   [cdkDragData]="Model"
   (cdkDragStarted)="dragStarted($event)"
   (cdkDragEnded)="dragEnded($event)"
@@ -10,6 +10,6 @@
   <div *cdkDragPlaceholder></div>
 
   <div *cdkDragPreview>
-    <app-card-color [Model]="DraggedModel"></app-card-color>
+    <app-card *ngFor="let card of DraggedModel" [Model]="card"></app-card>
   </div>
 </div>

@@ -10,6 +10,9 @@ import { CdkDragStart, CdkDragEnd, CdkDragMove } from '@angular/cdk/drag-drop';
 })
 export class CardComponent implements OnInit, AfterViewChecked {
 
+  // input? in service?
+  private ySpread = 20;
+
   private _cardModel: CardModel;
   private _draggedModel: CardModel[] = [];
 
@@ -32,13 +35,29 @@ export class CardComponent implements OnInit, AfterViewChecked {
 
   public dragStarted(event: CdkDragStart) {
     console.log('Drag Start Event ->', event)
-    //const indexFirstCard = event.source.dro
+    const containerData: Array<CardModel> = event.source.dropContainer.data;
+
+    const indexFirstCard = containerData.findIndex(x => x.Id === event.source.data.Id);
+    this.DraggedModel = [];
+    let yPos = 0;
+
+    for (let i = indexFirstCard; i < containerData.length; i++) {
+      const model = containerData[i];
+      model.Coords.yPos = yPos;
+      yPos += this.ySpread;
+      this.DraggedModel.push(model);
+    }
   }
 
   dragEnded(event: CdkDragEnd) {
-    console.log('Drag End Event ->', event)
+    console.log('Drag End Event ->', event);
+    const containerData: Array<CardModel> = event.source.dropContainer.data;
+    containerData.map((x, index) => {
+      x.Coords.yPos = index * this.ySpread;
+      x.Coords.zPos = 1000 + index;
+    });
   }
- 
+
   dragMoved(event: CdkDragMove) {
   }
 
