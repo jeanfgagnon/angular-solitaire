@@ -52,11 +52,12 @@ export class CardDeckService {
 
   private initDeck(): void {
     this._deck = [];
-
+    let id = 1000;
     this.faceNames.map(faceName => {
       for (let i = 0; i < this.valueCount; i++) {
         const card = new CardModel();
 
+        card.Id = ++id;
         card.Face = CardFaces[faceName];
         card.Value = i + 1;
         card.Open = false;

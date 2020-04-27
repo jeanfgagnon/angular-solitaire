@@ -1,5 +1,15 @@
-<div [cdkDragDisabled]="!Model.Open" [ngClass]="cardClass" #card 
-  cdkDrag [cdkDragData]="Model">
+<div [ngClass]="this.Model.Open ? 'play-card selectable-card' : 'play-card'" #card 
+  cdkDrag 
+  [cdkDragDisabled]="!Model.Open" 
+  [cdkDragData]="Model"
+  (cdkDragStarted)="dragStarted($event)"
+  (cdkDragEnded)="dragEnded($event)"
+  (cdkDragMoved)="dragMoved($event)"
+  >
   <app-card-color [Model]="Model"></app-card-color>
   <div *cdkDragPlaceholder></div>
+
+  <div *cdkDragPreview>
+    <app-card-color [Model]="DraggedModel"></app-card-color>
+  </div>
 </div>

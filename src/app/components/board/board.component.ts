@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CardDeckService } from 'src/app/services/card-deck.service';
 import { CardModel } from 'src/app/common/card-model';
 import { CardFaces } from 'src/app/common/card-faces.enum';
-import { CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, CdkDropList, transferArrayItem } from '@angular/cdk/drag-drop';
 import DragInfo from 'src/app/common/drag-info';
 
 @Component({
@@ -37,13 +37,102 @@ export class BoardComponent implements OnInit {
   // event handlers
 
   public drop(event: CdkDragDrop<string[]>) {
-    // first we can't drag from sky
     const dragInfo: DragInfo = this.getDraggedInfo(event);
-
+    if (this.moveIsValid(dragInfo)) {
+      console.log('move is valid model ==> %s', JSON.stringify(dragInfo.model));
+      this.moveCardModel(dragInfo);
+      // transferArrayItem(
+      //   event.previousContainer.data,
+      //   event.container.data,
+      //   event.previousIndex,
+      //   event.currentIndex
+      // );
+    }
     console.log('from %s', JSON.stringify(dragInfo));
   }
 
   // private code
+
+  moveCardModel(dragInfo: DragInfo) {
+    const fromPile: Array<CardModel> = this.getFromPile(dragInfo);
+    const destPile: Array<CardModel> = this.getDestPile(dragInfo);
+    
+    const model = fromPile.pop();
+    this.openLastCard(fromPile);
+
+    if (dragInfo.draggedTo === 'col') {
+      // compute z-index and yPos for
+      const dplm = destPile[destPile.length - 1]; // d)est p)ile l)ast m)odel
+      model.Coords.zPos = dplm.Coords.zPos + 1;
+      model.Coords.yPos = dplm.Coords.yPos + this.ySpread;
+    }
+    else if (dragInfo.draggedTo === 'sky') {
+      model.Coords.yPos = 0;
+      if (destPile.length === 0) {
+        model.Coords.zPos = this.zIndexBase;
+      }
+      else {
+        model.Coords.zPos = this.zIndexBase + destPile.length;
+      }
+    }
+
+    destPile.push(model);
+  }
+
+  private openLastCard(fromPile: CardModel[]): void {
+    if (fromPile && fromPile.length > 0) {
+      fromPile[fromPile.length - 1].Open = true;
+    }
+  }
+
+  private getDestPile(dragInfo: DragInfo): CardModel[] {
+    let destPile: CardModel[];
+
+    if (dragInfo.draggedTo === 'col') {
+      destPile = this.colPiles[dragInfo.draggedToIndex]; 
+    }
+    else if (dragInfo.draggedTo === 'sky') {
+      destPile = this.skyPiles[dragInfo.draggedToIndex];
+    }
+
+    return destPile;
+  }
+
+  private getFromPile(dragInfo: DragInfo): CardModel[] {
+    let fromPile: CardModel[];
+
+    if (dragInfo.draggedFrom === 'col') {
+      fromPile = this.colPiles[dragInfo.draggedFromIndex]; 
+    }
+    else {
+      // frompile = this.openDeck; // <-- soon tabb\
+      fromPile = this.colPiles[dragInfo.draggedFromIndex]; // je veux juste m'assurer que c'est initialisé 
+    }
+
+    return fromPile
+  }
+
+  private moveIsValid(dragInfo: DragInfo): boolean {
+    let rv = false;
+    let move = false;
+    // we can move from deck to col or sky
+    // we can move from col to col or sky
+    if (dragInfo.draggedFrom === 'col' && dragInfo.draggedTo === 'col') {
+      move = (dragInfo.draggedFromIndex !== dragInfo.draggedToIndex);
+    }
+    else if (dragInfo.draggedFrom === 'col' && dragInfo.draggedTo === 'sky') {
+      move = true;
+    }
+    else if (dragInfo.draggedFrom === 'deck' && (dragInfo.draggedTo === 'col' || dragInfo.draggedTo === 'sky')) {
+      move = true;
+    }
+
+    if (move) {
+      rv = true;
+    }
+
+    return rv;
+  }
 
   private getDraggedInfo(e: CdkDragDrop<string[], string[]>): DragInfo {
     const rv = new DragInfo();
@@ -66,6 +155,8 @@ export class BoardComponent implements OnInit {
     }
     rv.draggedToIndex = this.getIndexFromId(e.container.id);
 
+    rv.model = e.item.data;
+
     return rv;
   }
 
@@ -73,10 +164,10 @@ export class BoardComponent implements OnInit {
     let rv = -1;
     try {
       if (id.startsWith('col') || id.startsWith('sky')) {
-        rv = parseInt(id.substr(3));
+        rv = parseInt(id.substr(3)) - 1;
       }
       else {
-        rv = parseInt(id.substr(4));
+        rv = parseInt(id.substr(4)) - 1;
       }
     }
     catch {

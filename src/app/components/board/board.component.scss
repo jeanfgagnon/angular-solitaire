@@ -2,7 +2,8 @@
 //$card-width: 78px;
 //$card-height: 111px;
 
-$decalage: 22px;
+$decalage: 20px;
+$col-height: $card-height + ($decalage * 12);
 $inter-col: 25px;
 $sky-gutter: 35px;
 $my-padding: 30px;
@@ -65,40 +66,47 @@ $my-padding: 30px;
   position: absolute;
   top: $my-padding + $card-height + $sky-gutter;
   left: $my-padding;
+  height: $col-height;
 }
 
 .col-2 {
   position: absolute;
   top: $my-padding + $card-height + $sky-gutter;
   left: $my-padding + $card-width + $inter-col;
+  height: $col-height;
 }
 
 .col-3 {
   position: absolute;
   top: $my-padding + $card-height + $sky-gutter;
   left: $my-padding + ($card-width * 2) + ($inter-col * 2);
+  height: $col-height;
 }
 
 .col-4 {
   position: absolute;
   top: $my-padding + $card-height + $sky-gutter;
   left: $my-padding + ($card-width * 3) + ($inter-col * 3);
+  height: $col-height;
 }
 
 .col-5 {
   position: absolute;
   top: $my-padding + $card-height + $sky-gutter;
   left: $my-padding + ($card-width * 4) + ($inter-col * 4);
+  height: $col-height;
 }
 
 .col-6 {
   position: absolute;
   top: $my-padding + $card-height + $sky-gutter;
   left: $my-padding + ($card-width * 5) + ($inter-col * 5);
+  height: $col-height;
 }
 
 .col-7 {
   position: absolute;
   top: $my-padding + $card-height + $sky-gutter;
   left: $my-padding + ($card-width * 6) + ($inter-col * 6);
+  height: $col-height;
 }

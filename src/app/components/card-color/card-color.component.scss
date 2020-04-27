@@ -4,6 +4,11 @@
 
 $card-center-left: 14px;
 
+.figure-img {
+  width: $figure-width;
+  height: $figure-height;
+}
+
 .card-back {
   margin-top: 3px;
   width: $card-width - 10px;
