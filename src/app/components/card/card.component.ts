@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Renderer2, AfterViewChecked, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, Renderer2, AfterViewChecked, ViewChild, ElementRef, ɵisBoundToModule__POST_R3__ } from '@angular/core';
 
 import { CardModel } from 'src/app/common/card-model';
 import { CdkDragStart, CdkDragEnd, CdkDragMove } from '@angular/cdk/drag-drop';
@@ -44,8 +44,10 @@ export class CardComponent implements OnInit, AfterViewChecked {
     for (let i = indexFirstCard; i < containerData.length; i++) {
       const model = containerData[i];
       model.Coords.yPos = yPos;
+      model.Coords.zPos = 2000 + i;
       yPos += this.ySpread;
-      this.DraggedModel.push(model);
+      this.DraggedModel.push(Object.assign({}, model));
+      model.Visible = false;
     }
   }
 
@@ -54,7 +56,8 @@ export class CardComponent implements OnInit, AfterViewChecked {
     const containerData: Array<CardModel> = event.source.dropContainer.data;
     containerData.map((x, index) => {
       x.Coords.yPos = index * this.ySpread;
-      x.Coords.zPos = 1000 + index;
+      x.Coords.zPos = 100 + index;
+      x.Visible = true;
     });
   }
 

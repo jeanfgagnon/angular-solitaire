@@ -17,14 +17,14 @@ export class CardColorComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.iconSrc = "assets/" + this.Model.FaceName + ".png";
-    this.valueColorClass = (this.Model.FaceName === 'diamond' || this.Model.FaceName === 'heart') ? 'red' : 'black';
+    this.iconSrc = "assets/" + this.Model.Face.toString() + ".png";
+    this.valueColorClass = (this.Model.Face.toString() === 'diamond' || this.Model.Face.toString() === 'heart') ? 'red' : 'black';
   }
 
   // helpers
 
   public figurePath(figureVal: string): string {
-    return `assets/${figureVal.toLowerCase()}-${this.Model.FaceName}.png`;
+    return `assets/${figureVal.toLowerCase()}-${this.Model.Face.toString()}.png`;
   }
 
   // properties

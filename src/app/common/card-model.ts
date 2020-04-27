@@ -8,8 +8,4 @@ export class CardModel {
   public Open: boolean;
   public Visible: boolean;
   public Coords: CardCoords;
-  
-  public get FaceName(): string {
-    return this.Face.toString();
-  }
 }

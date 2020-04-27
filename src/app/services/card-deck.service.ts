@@ -29,7 +29,7 @@ export class CardDeckService {
       const j = Math.floor(Math.random() * (i + 1));
       [this._deck[i], this._deck[j]] = [this._deck[j], this._deck[i]];
     }
-    
+
     return this._deck;
   }
 

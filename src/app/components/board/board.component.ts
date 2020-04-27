@@ -30,7 +30,7 @@ export class BoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.deck = this.cardDeckService.shuffled(true);
-    this.dumbCard = this.cardDeckService.dumb(0, CardFaces.Club, false, 0, 0, 0);
+    this.dumbCard = Object.assign({}, this.cardDeckService.dumb(0, CardFaces.Club, true, 0, 0, 0));
     this.prepPiles();
   }
 
