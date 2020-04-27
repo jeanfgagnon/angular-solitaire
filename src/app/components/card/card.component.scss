@@ -18,6 +18,14 @@
   cursor: move;
 }
 
+.hide {
+  display: none;
+}
+
+.center-cursor {
+  transform: scale(0.7) translate(-200px, -100px);
+}
+
 .selectable-card:hover {
   border-color: red;
   background-color: #efefef

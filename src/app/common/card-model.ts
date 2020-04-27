@@ -6,6 +6,7 @@ export class CardModel {
   public Face: CardFaces;
   public Value: number;
   public Open: boolean;
+  public Visible: boolean;
   public Coords: CardCoords;
   
   public get FaceName(): string {

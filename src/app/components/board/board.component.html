@@ -1,9 +1,8 @@
 <div class='game-board' cdkDropListGroup>
 
   <div class='closed-deck place-holder'>
-    <app-card *ngIf="dumbCard.Coords !== undefined" Model="dumbCard"></app-card>
+    <app-card [Model]="dumbCard"></app-card>
   </div>
-
   <div class='opened-deck place-holder'>
 
   </div>

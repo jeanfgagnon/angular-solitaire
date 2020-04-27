@@ -41,6 +41,8 @@ export class CardDeckService {
     card.Value = value;
     card.Face = face;
     card.Open = open;
+    card.Visible = true;
+
     card.Coords.xPos = x;
     card.Coords.yPos = y;
     card.Coords.zPos = z;
@@ -61,6 +63,7 @@ export class CardDeckService {
         card.Face = CardFaces[faceName];
         card.Value = i + 1;
         card.Open = false;
+        card.Visible = true;
 
         card.Coords = new CardCoords();
         card.Coords.xPos = card.Coords.yPos = -1;

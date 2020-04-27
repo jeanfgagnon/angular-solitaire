@@ -1,4 +1,5 @@
 <div [ngClass]="this.Model.Open ? 'play-card selectable-card' : 'play-card'" #card
+  [class.hide]="!Model.Visible"
   cdkDrag
   [cdkDragDisabled]="!Model.Open"
   [cdkDragData]="Model"
@@ -9,7 +10,7 @@
   <app-card-color [Model]="Model"></app-card-color>
   <div *cdkDragPlaceholder></div>
 
-  <div *cdkDragPreview>
+  <div *cdkDragPreview class='center-cursor'>
     <app-card *ngFor="let card of DraggedModel" [Model]="card"></app-card>
   </div>
 </div>

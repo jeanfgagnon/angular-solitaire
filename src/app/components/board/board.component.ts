@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 
 import { CardDeckService } from 'src/app/services/card-deck.service';
 import { CardModel } from 'src/app/common/card-model';
@@ -19,7 +19,7 @@ export class BoardComponent implements OnInit {
   public xSpread = 20;
   public ySpread = 20;
 
-  public dumbCard: CardModel;
+  public dumbCard: CardModel;// = this.cardDeckService.dumb(0, CardFaces.Club, false, 0, 0, 0);
   public zIndexBase = 100;
 
   deck: CardModel[];
@@ -56,7 +56,7 @@ export class BoardComponent implements OnInit {
   moveCardModel(dragInfo: DragInfo) {
     const fromPile: Array<CardModel> = this.getFromPile(dragInfo);
     const destPile: Array<CardModel> = this.getDestPile(dragInfo);
-    
+
     const model = fromPile.pop();
     this.openLastCard(fromPile);
 
@@ -89,7 +89,7 @@ export class BoardComponent implements OnInit {
     let destPile: CardModel[];
 
     if (dragInfo.draggedTo === 'col') {
-      destPile = this.colPiles[dragInfo.draggedToIndex]; 
+      destPile = this.colPiles[dragInfo.draggedToIndex];
     }
     else if (dragInfo.draggedTo === 'sky') {
       destPile = this.skyPiles[dragInfo.draggedToIndex];
@@ -102,11 +102,11 @@ export class BoardComponent implements OnInit {
     let fromPile: CardModel[];
 
     if (dragInfo.draggedFrom === 'col') {
-      fromPile = this.colPiles[dragInfo.draggedFromIndex]; 
+      fromPile = this.colPiles[dragInfo.draggedFromIndex];
     }
     else {
       // frompile = this.openDeck; // <-- soon tabb\
-      fromPile = this.colPiles[dragInfo.draggedFromIndex]; // je veux juste m'assurer que c'est initialisé 
+      fromPile = this.colPiles[dragInfo.draggedFromIndex]; // je veux juste m'assurer que c'est initialisé
     }
 
     return fromPile
