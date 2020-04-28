@@ -1,10 +1,10 @@
 <div class='game-board' cdkDropListGroup>
 
-  <div class='closed-deck place-holder'>
-    <app-card [Model]="dumbCard"></app-card>
+  <div class='closed-deck place-holder' title='Click to flip cards' (click)="closedPileClick($event)">
+    <app-card *ngFor="let card of closedPile" [Model]="card"></app-card>
   </div>
   <div class='opened-deck place-holder'>
-
+    <app-card *ngFor="let card of openPile" [Model]="card"></app-card>
   </div>
 
   <!-- 4 'Sky' Slots -->

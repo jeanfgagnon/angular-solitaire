@@ -66,7 +66,7 @@ export class CardDeckService {
         card.Visible = true;
 
         card.Coords = new CardCoords();
-        card.Coords.xPos = card.Coords.yPos = -1;
+        card.Coords.xPos = card.Coords.yPos = 0;
 
         this._deck.push(card);
       };

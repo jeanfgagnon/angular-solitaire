@@ -11,7 +11,7 @@ $my-padding: 30px;
 .game-board {
   position: relative;
   width: ($inter-col * 6) + ($card-width * 7) + ($my-padding * 2);
-  height: ($card-height * 2) + $sky-gutter + (12 * $inter-col) + ($my-padding * 2);
+  height: ($card-height * 2) + $sky-gutter + (18 * $decalage) + ($my-padding * 2);
   border: #c0c0c0 solid 1px;
   border-radius: 6px;
   margin-left: auto;
@@ -30,6 +30,7 @@ $my-padding: 30px;
   position: absolute;
   top: $my-padding;
   left: $my-padding;
+  cursor: pointer;
 }
 
 .opened-deck {

@@ -5,6 +5,7 @@ import { CardModel } from 'src/app/common/card-model';
 import { CardFaces } from 'src/app/common/card-faces.enum';
 import { CdkDragDrop, CdkDropList, transferArrayItem } from '@angular/cdk/drag-drop';
 import DragInfo from 'src/app/common/drag-info';
+import { mapToMapExpression } from '@angular/compiler/src/render3/util';
 
 @Component({
   selector: 'app-board',
@@ -15,11 +16,17 @@ export class BoardComponent implements OnInit {
 
   public colPiles: Array<Array<CardModel>> = [[]];
   public skyPiles: Array<Array<CardModel>> = [[]];
+  public closedPile: Array<CardModel> = [];
+  public openPile: Array<CardModel> = [];
+
+  // how many card to take from closed deck
+  public cardToFlip = 3;
+
   // distance between card when spreaded on table
-  public xSpread = 20;
+  public xSpread = 15;
   public ySpread = 20;
 
-  public dumbCard: CardModel;// = this.cardDeckService.dumb(0, CardFaces.Club, false, 0, 0, 0);
+  public dumbCard: CardModel;
   public zIndexBase = 100;
 
   deck: CardModel[];
@@ -30,7 +37,7 @@ export class BoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.deck = this.cardDeckService.shuffled(true);
-    this.dumbCard = Object.assign({}, this.cardDeckService.dumb(0, CardFaces.Club, true, 0, 0, 0));
+    this.dumbCard = Object.assign({}, this.cardDeckService.dumb(0, CardFaces.Club, false, 0, 0, 0));
     this.prepPiles();
   }
 
@@ -41,19 +48,42 @@ export class BoardComponent implements OnInit {
     if (this.moveIsValid(dragInfo)) {
       console.log('move is valid model ==> %s', JSON.stringify(dragInfo.model));
       this.moveCardModel(dragInfo);
-      // transferArrayItem(
-      //   event.previousContainer.data,
-      //   event.container.data,
-      //   event.previousIndex,
-      //   event.currentIndex
-      // );
     }
     console.log('from %s', JSON.stringify(dragInfo));
   }
 
+  public closedPileClick(event: Event): void {
+    this.flipCards();
+  }
+
   // private code
 
-  moveCardModel(dragInfo: DragInfo) {
+  // flip 'cardToFlip' cards from closedPile to openPile
+  private flipCards(): void {
+    let nb = this.cardToFlip;
+
+    if (this.closedPile.length < nb) {
+      nb = this.closedPile.length;
+    }
+
+    this.openPile.map((card, index) => {
+      card.Coords.xPos = 0;
+      card.Coords.zPos = this.zIndexBase + index;
+    });
+
+    let flipped = this.closedPile.splice(-nb);
+
+    flipped.map((card, index) => {
+      card.Open = true;
+      card.Coords.xPos += this.xSpread * (index);
+      card.Coords.zPos = this.zIndexBase + this.openPile.length + 1;
+      this.openPile.push(card);
+    });
+
+    console.log('flipped --> ', flipped);
+  }
+
+  private moveCardModel(dragInfo: DragInfo) {
     const models = dragInfo.fromPile.splice(dragInfo.cardIndex);
 
     this.openLastCard(dragInfo.fromPile);
@@ -169,7 +199,7 @@ export class BoardComponent implements OnInit {
     return rv;
   }
 
-  getIndexFromId(id: string): number {
+  private getIndexFromId(id: string): number {
     let rv = -1;
     try {
       if (id.startsWith('col') || id.startsWith('sky')) {
@@ -187,8 +217,13 @@ export class BoardComponent implements OnInit {
   }
 
   private prepPiles(): void {
-    this.prepColPiles();
     this.prepSkyPiles();
+    this.prepColPiles();
+
+    // 24 card left
+    for (let cardIndex = 0; cardIndex < 24; cardIndex++) {
+      this.closedPile.push(this.deck[cardIndex]);
+    }
   }
 
   // prepare the 4 sky piles

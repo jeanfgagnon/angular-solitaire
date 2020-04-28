@@ -23,7 +23,8 @@
 }
 
 .center-cursor {
-  transform: scale(0.7) translate(-200px, -100px);
+  transform: rotate(45deg);
+  transform-origin: -20% -40%;
 }
 
 .selectable-card:hover {
