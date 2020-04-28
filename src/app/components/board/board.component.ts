@@ -54,29 +54,32 @@ export class BoardComponent implements OnInit {
   // private code
 
   moveCardModel(dragInfo: DragInfo) {
-    const fromPile: Array<CardModel> = this.getFromPile(dragInfo);
-    const destPile: Array<CardModel> = this.getDestPile(dragInfo);
+    const models = dragInfo.fromPile.splice(dragInfo.cardIndex);
 
-    const model = fromPile.pop();
-    this.openLastCard(fromPile);
+    this.openLastCard(dragInfo.fromPile);
 
     if (dragInfo.draggedTo === 'col') {
-      // compute z-index and yPos for
-      const dplm = destPile[destPile.length - 1]; // d)est p)ile l)ast m)odel
-      model.Coords.zPos = dplm.Coords.zPos + 1;
-      model.Coords.yPos = dplm.Coords.yPos + this.ySpread;
+      for (let i = 0; i < models.length; i++) {
+        dragInfo.destPile.push(models[i]);
+      }
+
+      dragInfo.destPile.map((model, cardIndex) => {
+        model.Coords.yPos = this.ySpread * cardIndex;
+        model.Coords.zPos = this.zIndexBase + cardIndex;
+        model.Visible = true;
+      });
     }
     else if (dragInfo.draggedTo === 'sky') {
-      model.Coords.yPos = 0;
-      if (destPile.length === 0) {
-        model.Coords.zPos = this.zIndexBase;
+      models[0].Coords.yPos = 0;
+      if (dragInfo.destPile.length === 0) {
+        models[0].Coords.zPos = this.zIndexBase;
       }
       else {
-        model.Coords.zPos = this.zIndexBase + destPile.length;
+        models[0].Coords.zPos = this.zIndexBase + dragInfo.destPile.length;
       }
-    }
 
-    destPile.push(model);
+      dragInfo.destPile.push(models[0]);
+    }
   }
 
   private openLastCard(fromPile: CardModel[]): void {
@@ -85,28 +88,28 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  private getDestPile(dragInfo: DragInfo): CardModel[] {
+  private getDestPile(draggedTo: string, pileIndex: number): CardModel[] {
     let destPile: CardModel[];
 
-    if (dragInfo.draggedTo === 'col') {
-      destPile = this.colPiles[dragInfo.draggedToIndex];
+    if (draggedTo === 'col') {
+      destPile = this.colPiles[pileIndex];
     }
-    else if (dragInfo.draggedTo === 'sky') {
-      destPile = this.skyPiles[dragInfo.draggedToIndex];
+    else if (draggedTo === 'sky') {
+      destPile = this.skyPiles[pileIndex];
     }
 
     return destPile;
   }
 
-  private getFromPile(dragInfo: DragInfo): CardModel[] {
+  private getFromPile(draggedFrom: string, pileIndex: number): CardModel[] {
     let fromPile: CardModel[];
 
-    if (dragInfo.draggedFrom === 'col') {
-      fromPile = this.colPiles[dragInfo.draggedFromIndex];
+    if (draggedFrom === 'col') {
+      fromPile = this.colPiles[pileIndex];
     }
     else {
       // frompile = this.openDeck; // <-- soon tabb\
-      fromPile = this.colPiles[dragInfo.draggedFromIndex]; // je veux juste m'assurer que c'est initialisé
+      fromPile = this.colPiles[pileIndex]; // je veux juste m'assurer que c'est initialisé
     }
 
     return fromPile
@@ -144,7 +147,9 @@ export class BoardComponent implements OnInit {
     else if (e.previousContainer.id.startsWith('deck')) {
       rv.draggedFrom = 'deck';
     }
+
     rv.draggedFromIndex = this.getIndexFromId(e.previousContainer.id);
+    rv.fromPile = this.getFromPile(rv.draggedFrom, rv.draggedFromIndex);
 
     // to
     if (e.container.id.startsWith('col')) {
@@ -153,9 +158,13 @@ export class BoardComponent implements OnInit {
     else if (e.container.id.startsWith('sky')) {
       rv.draggedTo = 'sky';
     }
+
     rv.draggedToIndex = this.getIndexFromId(e.container.id);
+    rv.destPile = this.getDestPile(rv.draggedTo, rv.draggedToIndex);
 
     rv.model = e.item.data;
+    rv.cardIndex = rv.fromPile.findIndex(x => x.Id === rv.model.Id);
+    rv.nbCard = rv.fromPile.length - rv.cardIndex;
 
     return rv;
   }
