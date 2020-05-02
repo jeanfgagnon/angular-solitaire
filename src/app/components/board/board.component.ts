@@ -46,8 +46,11 @@ export class BoardComponent implements OnInit {
   public drop(event: CdkDragDrop<string[]>) {
     const dragInfo: DragInfo = this.getDraggedInfo(event);
     if (this.moveIsValid(dragInfo)) {
-      console.log('move is valid model');
+      //      console.log('move is valid model');
       this.moveCardModel(dragInfo);
+      if (dragInfo.draggedFrom === 'deck') {
+        this.spreadOpenDeck(2);
+      }
     }
     console.log('from %s', JSON.stringify(dragInfo));
   }
@@ -55,6 +58,7 @@ export class BoardComponent implements OnInit {
   public closedPileClick(event: Event): void {
     if (this.closedPile.length > 0) {
       this.flipCards();
+      this.spreadOpenDeck(2);
     }
   }
 
@@ -75,7 +79,21 @@ export class BoardComponent implements OnInit {
 
   // private code
 
-  // flip 'cardToFlip' cards from closedPile to openPile
+  // spread open deck top card to show top 'nbCard'
+  private spreadOpenDeck(nbCard: number): void {
+    if (this.openPile.length > 1) {
+      let max = nbCard;
+
+      if (this.openPile.length <= max) {
+        max = this.openPile.length - 1;
+      }
+      this.openPile.slice(-max).map((model, index) => {
+        model.Coords.xPos = this.xSpread * (index + 1);
+      });
+    }
+  }
+
+  // flip 'cardToFlip' cards from closedPile to openPile and spread top cards
   private flipCards(): void {
     let nb = this.cardToFlip;
 
@@ -83,6 +101,7 @@ export class BoardComponent implements OnInit {
       nb = this.closedPile.length;
     }
 
+    // align cards in openpile
     this.openPile.map((card, index) => {
       card.Coords.xPos = 0;
       card.Coords.zPos = this.zIndexBase + index;
@@ -93,7 +112,8 @@ export class BoardComponent implements OnInit {
     let spreadIndex = 0;
     for (let i = nb - 1; i >= 0; i--) {
       flipped[i].Open = true;
-      flipped[i].Coords.xPos += this.xSpread * (spreadIndex++);
+      // first card will not spread.
+      // flipped[i].Coords.xPos += this.xSpread * (spreadIndex++);
       flipped[i].Coords.zPos = this.zIndexBase + this.openPile.length + 1;
       this.openPile.push(flipped[i]);
     }
