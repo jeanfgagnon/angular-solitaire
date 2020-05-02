@@ -26,11 +26,28 @@ $my-padding: 30px;
   border: #727272 solid 1px;
 }
 
+.reload-img {
+  width: $card-width / 2;
+  height: $card-width / 2;
+  opacity: 0.2;
+  cursor: pointer;
+}
+
+.reload-img:hover {
+  opacity: 0.3;
+}
+
+.cur-pointer {
+  cursor: pointer;
+}
+
 .closed-deck {
   position: absolute;
   top: $my-padding;
   left: $my-padding;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .opened-deck {

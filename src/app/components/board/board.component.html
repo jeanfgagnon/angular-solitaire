@@ -1,9 +1,11 @@
 <div class='game-board' cdkDropListGroup>
 
-  <div class='closed-deck place-holder' title='Click to flip cards' (click)="closedPileClick($event)">
+  <div class='closed-deck place-holder' [ngClass]="{'cur-pointer': closedPile.length>0}"  title='Click to flip cards' (click)="closedPileClick($event)">
     <app-card *ngFor="let card of closedPile" [Model]="card"></app-card>
+    <img *ngIf="closedPile.length === 0" (click)="reloadClick($event)" src='assets/reload.png' alt='Reload' class='reload-img' />
   </div>
-  <div class='opened-deck place-holder'>
+
+  <div class='opened-deck place-holder' id='deck-open' cdkDropList cdkDropListSortingDisabled [cdkDropListData]="openPile">
     <app-card *ngFor="let card of openPile" [Model]="card"></app-card>
   </div>
 

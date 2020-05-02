@@ -44,7 +44,7 @@ export class CardComponent implements OnInit, AfterViewChecked {
     for (let i = indexFirstCard; i < containerData.length; i++) {
       const model = containerData[i];
       model.Coords.yPos = yPos;
-      model.Coords.zPos = 2000 + i;
+      model.Coords.zPos = 100 + i;
       yPos += this.ySpread;
       this.DraggedModel.push(Object.assign({}, model));
       model.Visible = false;
@@ -53,9 +53,12 @@ export class CardComponent implements OnInit, AfterViewChecked {
 
   dragEnded(event: CdkDragEnd) {
     console.log('Drag End Event ->', event);
+    //(<CardModel>event.source.data).Coords.xPos = 0;  // moved card
     const containerData: Array<CardModel> = event.source.dropContainer.data;
     containerData.map((x, index) => {
-      x.Coords.yPos = index * this.ySpread;
+      if (event.source.dropContainer.id.startsWith('col')) {
+        x.Coords.yPos = index * this.ySpread;
+      }
       x.Coords.zPos = 100 + index;
       x.Visible = true;
     });

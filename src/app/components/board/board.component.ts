@@ -27,7 +27,7 @@ export class BoardComponent implements OnInit {
   public ySpread = 20;
 
   public dumbCard: CardModel;
-  public zIndexBase = 100;
+  public zIndexBase = 100; // pass this to cards?
 
   deck: CardModel[];
 
@@ -46,14 +46,31 @@ export class BoardComponent implements OnInit {
   public drop(event: CdkDragDrop<string[]>) {
     const dragInfo: DragInfo = this.getDraggedInfo(event);
     if (this.moveIsValid(dragInfo)) {
-      console.log('move is valid model ==> %s', JSON.stringify(dragInfo.model));
+      console.log('move is valid model');
       this.moveCardModel(dragInfo);
     }
     console.log('from %s', JSON.stringify(dragInfo));
   }
 
   public closedPileClick(event: Event): void {
-    this.flipCards();
+    if (this.closedPile.length > 0) {
+      this.flipCards();
+    }
+  }
+
+  public reloadClick(e: Event): void {
+    e.cancelBubble = true;
+    let card: CardModel;
+    let j = this.openPile.length - 1;
+    this.closedPile = new Array<CardModel>(this.openPile.length);
+
+    for (let i = 0; i < this.openPile.length; i++) {
+      card = this.openPile[i];
+      card.Coords.xPos = 0;
+      card.Open = false;
+      this.closedPile[j--] = card;
+    }
+    this.openPile = [];
   }
 
   // private code
@@ -73,14 +90,13 @@ export class BoardComponent implements OnInit {
 
     let flipped = this.closedPile.splice(-nb);
 
-    flipped.map((card, index) => {
-      card.Open = true;
-      card.Coords.xPos += this.xSpread * (index);
-      card.Coords.zPos = this.zIndexBase + this.openPile.length + 1;
-      this.openPile.push(card);
-    });
-
-    console.log('flipped --> ', flipped);
+    let spreadIndex = 0;
+    for (let i = nb - 1; i >= 0; i--) {
+      flipped[i].Open = true;
+      flipped[i].Coords.xPos += this.xSpread * (spreadIndex++);
+      flipped[i].Coords.zPos = this.zIndexBase + this.openPile.length + 1;
+      this.openPile.push(flipped[i]);
+    }
   }
 
   private moveCardModel(dragInfo: DragInfo) {
@@ -94,6 +110,7 @@ export class BoardComponent implements OnInit {
       }
 
       dragInfo.destPile.map((model, cardIndex) => {
+        model.Coords.xPos = 0;
         model.Coords.yPos = this.ySpread * cardIndex;
         model.Coords.zPos = this.zIndexBase + cardIndex;
         model.Visible = true;
@@ -101,6 +118,7 @@ export class BoardComponent implements OnInit {
     }
     else if (dragInfo.draggedTo === 'sky') {
       models[0].Coords.yPos = 0;
+      models[0].Coords.xPos = 0;
       if (dragInfo.destPile.length === 0) {
         models[0].Coords.zPos = this.zIndexBase;
       }
@@ -138,8 +156,8 @@ export class BoardComponent implements OnInit {
       fromPile = this.colPiles[pileIndex];
     }
     else {
-      // frompile = this.openDeck; // <-- soon tabb\
-      fromPile = this.colPiles[pileIndex]; // je veux juste m'assurer que c'est initialisé
+      fromPile = this.openPile; // <-- soon tabb\
+      //fromPile = this.colPiles[pileIndex]; // je veux juste m'assurer que c'est initialisé
     }
 
     return fromPile
@@ -225,6 +243,16 @@ export class BoardComponent implements OnInit {
       this.closedPile.push(this.deck[cardIndex]);
     }
   }
+
+  // private pileDump(title: string, pile: CardModel[]) {
+  //   let dump = '';
+  //   pile.map(model => {
+  //     dump += `[${model.Value}-${model.Face.toString().substr(0,1)}]`;
+  //   });
+  //   console.group('Pile Dump --' + title);
+  //   console.log(dump);
+  //   console.groupEnd();
+  // }
 
   // prepare the 4 sky piles
   private prepSkyPiles(): void {
