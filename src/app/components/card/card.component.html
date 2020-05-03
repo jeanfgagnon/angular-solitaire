@@ -10,7 +10,7 @@
   <app-card-color [Model]="Model"></app-card-color>
   <div *cdkDragPlaceholder></div>
 
-  <div *cdkDragPreview class='center-cursor'>
+  <div #dragged *cdkDragPreview>
     <app-card *ngFor="let card of DraggedModel" [Model]="card"></app-card>
   </div>
 </div>

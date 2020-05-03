@@ -19,6 +19,7 @@ export class CardComponent implements OnInit, AfterViewChecked {
   public cardClass: string;
 
   @ViewChild('card') card: ElementRef;
+  @ViewChild('dragged') dragged: ElementRef;
 
   constructor(private renderer: Renderer2) { }
 
@@ -34,7 +35,9 @@ export class CardComponent implements OnInit, AfterViewChecked {
   // event handlers
 
   public dragStarted(event: CdkDragStart) {
-    console.log('Drag Start Event ->', event)
+    console.log('Drag Start Event ->', event);
+    console.log('x %s y %s', event.source.element.nativeElement.offsetLeft, event.source.element.nativeElement.offsetTop);
+
     const containerData: Array<CardModel> = event.source.dropContainer.data;
 
     const indexFirstCard = containerData.findIndex(x => x.Id === event.source.data.Id);
@@ -53,7 +56,6 @@ export class CardComponent implements OnInit, AfterViewChecked {
 
   dragEnded(event: CdkDragEnd) {
     console.log('Drag End Event ->', event);
-    //(<CardModel>event.source.data).Coords.xPos = 0;  // moved card
     const containerData: Array<CardModel> = event.source.dropContainer.data;
     containerData.map((x, index) => {
       if (event.source.dropContainer.id.startsWith('col')) {
@@ -65,6 +67,15 @@ export class CardComponent implements OnInit, AfterViewChecked {
   }
 
   dragMoved(event: CdkDragMove) {
+    // faire un bounding rect de la carte pour avoir sa hauteur et grandeur et
+    // mette ces valeurs, divisé par deux, dans les deux lignes suivantes.
+    const xPos = event.pointerPosition.x - 36;
+    const yPos = event.pointerPosition.y - 50;
+    if (this.dragged.nativeElement) {
+      this.renderer.setStyle(this.dragged.nativeElement, 'transform', `translate3d(${xPos}px, ${yPos}px, 0)`);
+      this.renderer.setStyle(this.dragged.nativeElement, 'cursor', 'move');
+    }
+    console.log('DragMoved', event);
   }
 
   // private code

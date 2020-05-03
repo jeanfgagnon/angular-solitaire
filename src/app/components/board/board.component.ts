@@ -52,7 +52,6 @@ export class BoardComponent implements OnInit {
         this.spreadOpenDeck(2);
       }
     }
-    console.log('from %s', JSON.stringify(dragInfo));
   }
 
   public closedPileClick(event: Event): void {
