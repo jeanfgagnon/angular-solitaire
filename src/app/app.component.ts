@@ -11,10 +11,7 @@ import { CardModel } from './common/card-model';
 export class AppComponent implements OnInit {
   title = 'ng-solitaire';
 
-  now = new Date().toString();
-  
   constructor() {
-
   }
 
   ngOnInit(): void {

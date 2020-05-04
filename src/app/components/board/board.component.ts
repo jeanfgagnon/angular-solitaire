@@ -44,6 +44,7 @@ export class BoardComponent implements OnInit {
   // event handlers
 
   public drop(event: CdkDragDrop<string[]>) {
+    console.log('board-drop-event');
     const dragInfo: DragInfo = this.getDraggedInfo(event);
     if (this.moveIsValid(dragInfo)) {
       //      console.log('move is valid model');
@@ -198,10 +199,61 @@ export class BoardComponent implements OnInit {
     }
 
     if (move) {
-      rv = true;
+      if (dragInfo.draggedTo === 'sky') {
+        rv = this.validateSkyMove(dragInfo);
+      }
+      else {
+        rv = this.validateColMove(dragInfo);
+      }
     }
 
     return rv;
+  }
+
+  validateColMove(dragInfo: DragInfo): boolean {
+    let rv = false;
+
+    if (dragInfo.destPile.length === 0) {
+      if (dragInfo.model.Value === 13) {
+        rv = true;
+      }
+    }
+    else {
+      const topCard = dragInfo.destPile.slice(-1)[0];
+      if (this.getFaceColor(topCard.Face) != this.getFaceColor(dragInfo.model.Face)) {
+        if (topCard.Value - 1 === dragInfo.model.Value) {
+          rv = true;
+        }
+      }
+    }
+    return rv;
+  }
+
+  private validateSkyMove(dragInfo: DragInfo): boolean {
+    let rv = false;
+
+    if (dragInfo.destPile.length === 0) {
+      if (dragInfo.model.Value === 1) {
+        rv = true;
+      }
+    }
+    else {
+      const topCard = dragInfo.destPile.slice(-1)[0];
+      if (topCard.Face === dragInfo.model.Face && topCard.Value === dragInfo.model.Value - 1) {
+        rv = true;
+      }
+    }
+
+    return rv;
+  }
+
+  private getFaceColor(face: CardFaces): 'red' | 'black' {
+    if (face === CardFaces.Club || face === CardFaces.Spade) {
+      return 'black';
+    }
+    else {
+      return 'red';
+    }
   }
 
   private getDraggedInfo(e: CdkDragDrop<string[], string[]>): DragInfo {

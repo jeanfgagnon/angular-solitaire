@@ -49,7 +49,9 @@ export class CardComponent implements OnInit, AfterViewChecked {
       model.Coords.yPos = yPos;
       model.Coords.zPos = 100 + i;
       yPos += this.ySpread;
-      this.DraggedModel.push(Object.assign({}, model));
+      // this.DraggedModel.push(Object.assign({}, model));
+      this.DraggedModel.push(JSON.parse(JSON.stringify(model)));
+      this.DraggedModel.slice(-1)[0].Coords.xPos = 0;
       model.Visible = false;
     }
   }
@@ -75,7 +77,6 @@ export class CardComponent implements OnInit, AfterViewChecked {
       this.renderer.setStyle(this.dragged.nativeElement, 'transform', `translate3d(${xPos}px, ${yPos}px, 0)`);
       this.renderer.setStyle(this.dragged.nativeElement, 'cursor', 'move');
     }
-    console.log('DragMoved', event);
   }
 
   // private code
