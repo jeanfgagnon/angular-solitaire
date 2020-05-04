@@ -26,7 +26,6 @@ export class BoardComponent implements OnInit {
   public xSpread = 15;
   public ySpread = 20;
 
-  public dumbCard: CardModel;
   public zIndexBase = 100; // pass this to cards?
 
   deck: CardModel[];
@@ -37,7 +36,6 @@ export class BoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.deck = this.cardDeckService.shuffled(true);
-    this.dumbCard = Object.assign({}, this.cardDeckService.dumb(0, CardFaces.Club, false, 0, 0, 0));
     this.prepPiles();
   }
 
@@ -77,9 +75,19 @@ export class BoardComponent implements OnInit {
     this.openPile = [];
   }
 
+  public newGameClick(e: Event): void {
+    this.colPiles = [[]];
+    this.skyPiles = [[]];
+    this.closedPile = [];
+    this.openPile = [];
+
+    this.deck = this.cardDeckService.shuffled(true);
+    this.prepPiles();
+  }
+
   // private code
 
-  // spread open deck top card to show top 'nbCard'
+  // spread open deck top card to show top 'nbCard' + 1
   private spreadOpenDeck(nbCard: number): void {
     if (this.openPile.length > 1) {
       let max = nbCard;
@@ -89,11 +97,12 @@ export class BoardComponent implements OnInit {
       }
       this.openPile.slice(-max).map((model, index) => {
         model.Coords.xPos = this.xSpread * (index + 1);
+        model.Draggable = index === max - 1;
       });
     }
   }
 
-  // flip 'cardToFlip' cards from closedPile to openPile and spread top cards
+  // flip 'cardToFlip' cards from closedPile to openPile
   private flipCards(): void {
     let nb = this.cardToFlip;
 
@@ -105,6 +114,7 @@ export class BoardComponent implements OnInit {
     this.openPile.map((card, index) => {
       card.Coords.xPos = 0;
       card.Coords.zPos = this.zIndexBase + index;
+      card.Draggable = false;
     });
 
     let flipped = this.closedPile.splice(-nb);
@@ -112,8 +122,7 @@ export class BoardComponent implements OnInit {
     let spreadIndex = 0;
     for (let i = nb - 1; i >= 0; i--) {
       flipped[i].Open = true;
-      // first card will not spread.
-      // flipped[i].Coords.xPos += this.xSpread * (spreadIndex++);
+      flipped[i].Draggable = false;
       flipped[i].Coords.zPos = this.zIndexBase + this.openPile.length + 1;
       this.openPile.push(flipped[i]);
     }

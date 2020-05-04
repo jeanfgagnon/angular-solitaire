@@ -18,13 +18,13 @@
   cursor: move;
 }
 
-.hide {
-  display: none;
-}
-
 .selectable-card:hover {
   border-color: red;
   background-color: #efefef
+}
+
+.hide {
+  display: none;
 }
 
 // .cdk-drop-dragging .cdk-drag {

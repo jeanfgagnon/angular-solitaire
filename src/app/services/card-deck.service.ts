@@ -64,6 +64,7 @@ export class CardDeckService {
         card.Value = i + 1;
         card.Open = false;
         card.Visible = true;
+        card.Draggable = true;
 
         card.Coords = new CardCoords();
         card.Coords.xPos = card.Coords.yPos = 0;

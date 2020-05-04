@@ -1,7 +1,7 @@
-<div [ngClass]="this.Model.Open ? 'play-card selectable-card' : 'play-card'" #card
+<div [ngClass]="Model.Open && Model.Draggable ? 'play-card selectable-card' : 'play-card'" #card
   [class.hide]="!Model.Visible"
   cdkDrag
-  [cdkDragDisabled]="!Model.Open"
+  [cdkDragDisabled]="!Model.Open || !Model.Draggable"
   [cdkDragData]="Model"
   (cdkDragStarted)="dragStarted($event)"
   (cdkDragEnded)="dragEnded($event)"

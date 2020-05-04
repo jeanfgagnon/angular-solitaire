@@ -19,6 +19,14 @@ $my-padding: 30px;
   box-sizing: border-box;
 }
 
+.bottom-zone {
+  width: ($inter-col * 6) + ($card-width * 7) + ($my-padding * 2);
+  margin-left: auto;
+  margin-right: auto;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 10pt;
+}
+
 .place-holder {
   width: $card-width;
   height: $card-height;
