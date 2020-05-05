@@ -50,6 +50,9 @@ export class BoardComponent implements OnInit {
       if (dragInfo.draggedFrom === 'deck') {
         this.spreadOpenDeck(2);
       }
+      if (dragInfo.draggedTo === 'sky') {
+        dragInfo.destPile.slice(-1)[0].Draggable = false;
+      }
     }
   }
 
@@ -99,6 +102,9 @@ export class BoardComponent implements OnInit {
         model.Coords.xPos = this.xSpread * (index + 1);
         model.Draggable = index === max - 1;
       });
+    }
+    else if (this.openPile.length === 1) {
+      this.openPile[0].Draggable = true;
     }
   }
 
