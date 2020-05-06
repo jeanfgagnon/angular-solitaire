@@ -5,7 +5,7 @@
     <img *ngIf="closedPile.length === 0" (click)="reloadClick($event)" src='assets/reload.png' alt='Reload' class='reload-img' />
   </div>
 
-  <div class='opened-deck place-holder' id='deck-open' cdkDropList cdkDropListSortingDisabled [cdkDropListData]="openPile">
+  <div class='opened-deck place-holder' id='deck-open' (dblclick)="pileDoubleClick(openPile)" cdkDropList cdkDropListSortingDisabled [cdkDropListData]="openPile">
     <app-card *ngFor="let card of openPile" [Model]="card"></app-card>
   </div>
 
@@ -33,49 +33,49 @@
 
   <!-- 7 Columns Slots -->
 
-  <div class='col-1' id='col1' cdkDropList cdkDropListSortingDisabled [cdkDropListData]="colPiles[0]"
+  <div class='col-1' id='col1' (dblclick)="pileDoubleClick(colPiles[0])" cdkDropList cdkDropListSortingDisabled [cdkDropListData]="colPiles[0]"
     (cdkDropListDropped)="drop($event)">
     <div class='place-holder'>
       <app-card *ngFor="let card of colPiles[0]" [Model]="card"></app-card>
     </div>
   </div>
 
-  <div class='col-2' id='col2' cdkDropList cdkDropListSortingDisabled [cdkDropListData]="colPiles[1]"
+  <div class='col-2' id='col2' (dblclick)="pileDoubleClick(colPiles[1])" cdkDropList cdkDropListSortingDisabled [cdkDropListData]="colPiles[1]"
     (cdkDropListDropped)="drop($event)">
     <div class='place-holder'>
       <app-card *ngFor="let card of colPiles[1]" [Model]="card"></app-card>
     </div>
   </div>
 
-  <div class='col-3' id='col3' cdkDropList cdkDropListSortingDisabled [cdkDropListData]="colPiles[2]"
+  <div class='col-3' id='col3' (dblclick)="pileDoubleClick(colPiles[2])" cdkDropList cdkDropListSortingDisabled [cdkDropListData]="colPiles[2]"
     (cdkDropListDropped)="drop($event)">
     <div class='place-holder'>
       <app-card *ngFor="let card of colPiles[2]" [Model]="card"></app-card>
     </div>
   </div>
 
-  <div class='col-4' id='col4' cdkDropList cdkDropListSortingDisabled [cdkDropListData]="colPiles[3]"
+  <div class='col-4' id='col4' (dblclick)="pileDoubleClick(colPiles[3])" cdkDropList cdkDropListSortingDisabled [cdkDropListData]="colPiles[3]"
     (cdkDropListDropped)="drop($event)">
     <div class='place-holder'>
       <app-card *ngFor="let card of colPiles[3]" [Model]="card"></app-card>
     </div>
   </div>
 
-  <div class='col-5' id='col5' cdkDropList cdkDropListSortingDisabled [cdkDropListData]="colPiles[4]"
+  <div class='col-5' id='col5' (dblclick)="pileDoubleClick(colPiles[4])" cdkDropList cdkDropListSortingDisabled [cdkDropListData]="colPiles[4]"
     (cdkDropListDropped)="drop($event)">
     <div class='place-holder'>
       <app-card *ngFor="let card of colPiles[4]" [Model]="card"></app-card>
     </div>
   </div>
 
-  <div class='col-6' id='col6' cdkDropList cdkDropListSortingDisabled [cdkDropListData]="colPiles[5]"
+  <div class='col-6' id='col6' (dblclick)="pileDoubleClick(colPiles[5])" cdkDropList cdkDropListSortingDisabled [cdkDropListData]="colPiles[5]"
     (cdkDropListDropped)="drop($event)">
     <div class='place-holder'>
       <app-card *ngFor="let card of colPiles[5]" [Model]="card"></app-card>
     </div>
   </div>
 
-  <div class='col-7' id='col7' cdkDropList cdkDropListSortingDisabled [cdkDropListData]="colPiles[6]"
+  <div class='col-7' id='col7' (dblclick)="pileDoubleClick(colPiles[6])" cdkDropList cdkDropListSortingDisabled [cdkDropListData]="colPiles[6]"
     (cdkDropListDropped)="drop($event)">
     <div class='place-holder'>
       <app-card *ngFor="let card of colPiles[6]" [Model]="card"></app-card>

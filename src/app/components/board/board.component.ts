@@ -6,6 +6,7 @@ import { CardFaces } from 'src/app/common/card-faces.enum';
 import { CdkDragDrop, CdkDropList, transferArrayItem } from '@angular/cdk/drag-drop';
 import DragInfo from 'src/app/common/drag-info';
 import { mapToMapExpression } from '@angular/compiler/src/render3/util';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-board',
@@ -88,7 +89,53 @@ export class BoardComponent implements OnInit {
     this.prepPiles();
   }
 
+  public pileDoubleClick(pile: CardModel[]) {
+    if (pile.length > 0) {
+      this.flyToSky(pile);
+    }
+  }
+
   // private code
+
+  private flyToSky(fromPile: CardModel[]) {
+    const model = fromPile.slice(-1)[0];
+    let i: number;
+    let move = false;
+    for (i = 0; i < 4; i++) {
+      if (this.skyPiles[i].length === 0) {
+        if (model.Value === 1) {
+          move = true;
+          //this.skyPiles[i].push(fromPile.splice(-1)[0]);
+          break;
+        }
+      }
+      else {
+        if (model.Face === this.skyPiles[i][0].Face) {
+          if (model.Value - 1 === this.skyPiles[0].slice(-1)[0].Value) {
+            move = true;
+            //this.skyPiles[i].push(fromPile.splice(-1)[0]);
+            break;
+          }
+        }
+      }
+    }
+    if (move) {
+      this.skyPiles[i].push(fromPile.splice(-1)[0]);
+      let skyModel = this.skyPiles[i].slice(-1)[0];
+      skyModel.Coords.yPos = 0;
+      skyModel.Coords.xPos = 0;
+      skyModel.Draggable = false;
+
+      this.skyPiles[i].map((model, index) => {
+        model.Coords.zPos = this.zIndexBase + index;
+      });
+
+      if (fromPile.length > 0) {
+        fromPile.slice(-1)[0].Open = true;
+        fromPile.slice(-1)[0].Draggable = true;
+      }
+    }
+  }
 
   // spread open deck top card to show top 'nbCard' + 1
   private spreadOpenDeck(nbCard: number): void {
@@ -191,8 +238,7 @@ export class BoardComponent implements OnInit {
       fromPile = this.colPiles[pileIndex];
     }
     else {
-      fromPile = this.openPile; // <-- soon tabb\
-      //fromPile = this.colPiles[pileIndex]; // je veux juste m'assurer que c'est initialisé
+      fromPile = this.openPile;
     }
 
     return fromPile
@@ -241,6 +287,7 @@ export class BoardComponent implements OnInit {
         }
       }
     }
+
     return rv;
   }
 
