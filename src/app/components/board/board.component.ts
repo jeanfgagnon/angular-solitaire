@@ -111,8 +111,7 @@ export class BoardComponent implements OnInit {
       }
       else {
         if (model.Face === this.skyPiles[i][0].Face) {
-          if (model.Value - 1 === this.skyPiles[i
-          ].slice(-1)[0].Value) {
+          if (model.Value - 1 === this.skyPiles[i].slice(-1)[0].Value) {
             move = true;
             //this.skyPiles[i].push(fromPile.splice(-1)[0]);
             break;
