@@ -19,14 +19,6 @@ $my-padding: 30px;
   box-sizing: border-box;
 }
 
-.bottom-zone {
-  width: ($inter-col * 6) + ($card-width * 7) + ($my-padding * 2);
-  margin-left: auto;
-  margin-right: auto;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 10pt;
-}
-
 .place-holder {
   width: $card-width;
   height: $card-height;
@@ -135,4 +127,30 @@ $my-padding: 30px;
   top: $my-padding + $card-height + $sky-gutter;
   left: $my-padding + ($card-width * 6) + ($inter-col * 6);
   height: $col-height;
+}
+
+.title-zone {
+  display: grid;
+  grid-template-columns: 15% auto 15%;
+  width: ($inter-col * 6) + ($card-width * 7) + ($my-padding * 2);
+  margin-left: auto;
+  margin-right: auto;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 14pt;
+}
+
+.title-zone-right {
+  justify-self: end;
+  align-self: end;
+  font-size: 9pt;
+  padding-right: 10px;
+  box-sizing: border-box;
+}
+
+.title-zone-center {
+  justify-self: center;
+}
+
+.title-zone-right a {
+  text-decoration: none;
 }

@@ -1,3 +1,14 @@
+<div class='title-zone'>
+  <div></div>
+  <div class='title-zone-center'>
+    &spades; <span class='red'>&diams;</span> &clubs; <span class='red'>&hearts;</span> &nbsp;
+    Angular Solitaire v1.0 &nbsp; <span class='red'>&hearts;</span>  &clubs; <span class='red'>&diams;</span> &spades;
+  </div>
+  <div class='title-zone-right'>
+    <a href='#' (click)="newGameClick($event)">New Game</a>
+  </div>
+</div>
+
 <div class='game-board' cdkDropListGroup>
 
   <div class='closed-deck place-holder' [ngClass]="{'cur-pointer': closedPile.length>0}"  title='Click to flip cards' (click)="closedPileClick($event)">
@@ -81,8 +92,4 @@
       <app-card *ngFor="let card of colPiles[6]" [Model]="card"></app-card>
     </div>
   </div>
-</div>
-
-<div class='bottom-zone'>
-  <a href='#' (click)="newGameClick($event)">New Game</a>
 </div>
