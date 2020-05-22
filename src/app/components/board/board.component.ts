@@ -87,6 +87,7 @@ export class BoardComponent implements OnInit {
 
     this.deck = this.cardDeckService.shuffled(true);
     this.prepPiles();
+    e.preventDefault();
   }
 
   public pileDoubleClick(pile: CardModel[]) {
