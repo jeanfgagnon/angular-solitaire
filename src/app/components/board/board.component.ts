@@ -3,10 +3,8 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@ang
 import { CardDeckService } from 'src/app/services/card-deck.service';
 import { CardModel } from 'src/app/common/card-model';
 import { CardFaces } from 'src/app/common/card-faces.enum';
-import { CdkDragDrop, CdkDropList, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import DragInfo from 'src/app/common/drag-info';
-import { mapToMapExpression } from '@angular/compiler/src/render3/util';
-import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-board',
@@ -42,9 +40,9 @@ export class BoardComponent implements OnInit {
 
   // event handlers
 
-  public drop(event: CdkDragDrop<string[]>) {
+  public drop(e: CdkDragDrop<string[]>) {
     console.log('board-drop-event');
-    const dragInfo: DragInfo = this.getDraggedInfo(event);
+    const dragInfo: DragInfo = this.getDraggedInfo(e);
     if (this.moveIsValid(dragInfo)) {
       //      console.log('move is valid model');
       this.moveCardModel(dragInfo);
@@ -57,10 +55,13 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  public closedPileClick(event: Event): void {
+  public closedPileClick(e: Event): void {
     if (this.closedPile.length > 0) {
       this.flipCards();
       this.spreadOpenDeck(2);
+    }
+    else {
+      this.reloadClick(e);
     }
   }
 
