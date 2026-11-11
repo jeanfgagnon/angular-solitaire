@@ -27,9 +27,9 @@ export class BoardComponent implements OnInit {
 
   public zIndexBase = 100; // pass this to cards?
 
-  deck: CardModel[];
+  deck: CardModel[] = [];
 
-  @ViewChild('col1') col1: ElementRef;
+  @ViewChild('col1') col1!: ElementRef;
 
   constructor(private cardDeckService: CardDeckService) { }
 
@@ -221,7 +221,7 @@ export class BoardComponent implements OnInit {
   }
 
   private getDestPile(draggedTo: string, pileIndex: number): CardModel[] {
-    let destPile: CardModel[];
+    let destPile: CardModel[] = [];
 
     if (draggedTo === 'col') {
       destPile = this.colPiles[pileIndex];
